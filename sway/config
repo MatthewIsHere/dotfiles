@@ -225,6 +225,9 @@ bindsym $mod+r mode "resize"
     bindsym XF86MonBrightnessUp exec light -A 5
     bindsym XF86MonBrightnessDown exec light -U 5
 
+#Hibernate Keybind
+    bindsym $mod+Shift+h exec systemctl hibernate
+
 #
 # Status Bar:
 #
