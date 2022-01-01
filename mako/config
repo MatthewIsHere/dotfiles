@@ -1,0 +1,8 @@
+background-color=#1a1b26
+border-color=#1a1b26
+progress-color=#bbc2cf
+
+border-radius=5
+default-timeout=5000
+layer=overlay
+font=Arial

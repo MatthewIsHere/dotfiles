@@ -1,0 +1,58 @@
+* {
+    border: none;
+    font-family: Font Awesome, Roboto, Arial, sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+window#waybar {
+    background-color: black;
+}
+/*-----module groups----*/
+.modules-left {
+    margin-top: 2px;
+    margin-left: 5px;
+}
+.modules-center {
+    margin-top: 2px;
+}
+.modules-right {
+    margin-top: 2px;
+    margin-right: 5px;
+}
+/*-----modules indv----*/
+#workspaces button {
+    padding: 1px 5px;
+    background-color: transparent;
+}
+/* Right Side Modules */
+#network {
+    padding: 0 3px 0 5px;
+}
+#backlight,
+#battery,
+#temperature {
+    padding: 0 5px;
+}
+
+#mode {
+    color: red;
+    font-weight: bold;
+}
+/*-----Indicators----*/
+#pulseaudio.muted {
+    color: red;
+}
+#battery.charging {
+    color: darkgreen;
+}
+#battery.warning:not(.charging) {
+	color: gold;
+}
+#battery.critical:not(.charging) {
+    color: red;
+}
+#temperature.critical {
+    color: red;
+}
+
