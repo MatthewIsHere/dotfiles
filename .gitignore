@@ -1,0 +1,8 @@
+*
+!.gitignore
+!electron-flags.conf
+!kitty/
+!mako/
+!sway/
+!sway-launcher-desktop/
+!waybar/
