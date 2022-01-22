@@ -9,8 +9,11 @@ set $term kitty
 # on the original workspace that the command was run on.
 set $menu exec $term --class=launcher -e "sway-launcher-desktop" | xargs swaymsg exec --
 
-#Lock command
+# Lock command
 set $lock ' ~/.config/sway/lock.sh'
+
+# Idle configuration
+exec swayidle -w timeout 300 $lock before-sleep $lock 
 
 # Scaling
 output * scale 1
@@ -18,21 +21,16 @@ output * scale 1
 # Wallpaper
 # set $bg $HOME/Pictures/HazyMountains.jpg
 # set $bg /usr/share/backgrounds/archlinux/landscape.jpg
-# set $bg /usr/share/backgrounds/archlinux/small.png
-# set $bg /usr/share/backgrounds/archlinux/small.png
-set $bg $HOME/Pictures/ScotlandMountains1.jpg
+set $bg /usr/share/backgrounds/archlinux/small.png
+# set $bg $HOME/Pictures/ScotlandMountains1.jpg
 output * bg $bg fill
 
-#Idle configuration
-exec swayidle -w timeout 300 $lock before-sleep $lock 
-
-### Autostart
-#exec export $(gnome-keyring-daemon --start)
+# Autostart
 exec export XDG_CURRENT_DESKTOP=sway
-xwayland enable
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+xwayland enable
 
-### Input config
+# Input config
 input type:touchpad {
     tap enabled
     natural_scroll enabled
@@ -46,20 +44,12 @@ input type:touchpad {
 
 
 ### Window config
-# custom
-#for_window [app_id=aptus-upgrade] floating enable
-for_window [app_id=sticky] floating enable
-# filemanagers
-for_window [app_id=Thunar] floating enable
-for_window [app_id=dolphin] floating enable
+# Filemanagers
 for_window [app_id=nemo] floating enable
-for_window [app_id=ranger] floating enable
-for_window [title="Catfish"] floating enable
-# terminals
-for_window [app_id=Alacritty] floating enable
+# Terminals
 for_window [app_id=kitty] floating enable, resize set 730 500
-# dialogs
-for_window [app_id=zenity] floating enable
+# Dialogs
+for_window [app_id="system-config-printer"] floating enable
 for_window [app_id="apostrophe" title="Export"] floating enable
 for_window [title="Firefox — Sharing Indicator"] floating enable
 for_window [title="Open Files"] floating enable
@@ -102,9 +92,6 @@ gaps outer 15
     # Start your launcher
     bindsym $mod+d exec $menu
     
-    # File Search
-    bindsym $mod+Shift+f exec catfish
-
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -228,24 +215,7 @@ bindsym $mod+r mode "resize"
 #Hibernate Keybind
     bindsym $mod+Shift+h exec systemctl hibernate
 
-#
 # Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while $HOME/.config/sway/status.sh; do sleep 0.25; done
-#
-#    colors {
-#        statusline #ffffff
-#       background #323232
-#       #inactive_workspace #32323200 #32323200 #5c5c5c
-#   }
-
-# Waybar i think?
 exec_always $HOME/.config/waybar/waybar.sh
 
 include /etc/sway/config.d/*
