@@ -8,6 +8,7 @@ sway-launcher-desktop-git
 swaylock
 swayidle
 pipewire
+pipewire-pulse
 wireplumber
 mako
 waybar
