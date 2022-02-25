@@ -5,11 +5,18 @@
 ```
 sway
 sway-launcher-desktop-git
+swaylock
+swayidle
 pipewire
 wireplumber
 mako
 waybar
 kitty
+pamixer
+playerctl
+light
+pavucontrol
+polkit-gnome
 ```
 ## Installation
 ```
