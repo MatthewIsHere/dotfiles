@@ -1,13 +1,18 @@
 * {
-    border: none;
-    font-family: Font Awesome, Roboto, Arial, sans-serif;
+    font-family: "Roboto Mono Medium", Font Awesome, Roboto, Arial, sans-serif;
     font-size: 13px;
-    color: #ffffff;
 }
 
 window#waybar {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;;
 }
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
 /*-----module groups----*/
 .modules-left {
     margin-top: 2px;
@@ -26,13 +31,35 @@ window#waybar {
     background-color: transparent;
 }
 /* Right Side Modules */
-#network {
-    padding: 0 3px 0 5px;
-}
+#network,
+#pulseaudio,
+#cpu,
+#clock,
+#memory,
+#tray,
+#mode,
+#mpd,
 #backlight,
 #battery,
 #temperature {
-    padding: 0 5px;
+    padding: 0 10px;
+    margin: 3px 0px;
+    border-radius: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-width: 45px;
+}
+
+#window,
+#workspaces {
+	margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces { /* No left margin on left most workspaces module */
+	margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces { /* No right margin on right most workspaces module */
+        margin-right: 0;
 }
 
 #mode {

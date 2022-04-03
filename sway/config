@@ -60,6 +60,7 @@ for_window [class=zoom] floating enable
 for_window [app_id=pavucontrol] floating enable
 for_window [app_id=io.github.celluloid_player.Celluloid] floating enable
 # Games
+for_window [title="Steam"] floating enable
 for_window [app_id="minecraft-launcher"] floating enable
 for_window [title="Linux Minecraft Launcher"] floating enable
 for_window [title="Minecraft"] floating enable
@@ -71,6 +72,7 @@ for_window [app_id=file-roller] floating enable
 for_window [app_id=gedit] floating enable
 for_window [title="Customise Look and Feel"] floating enable
 for_window [app_id=discord] floating enable
+for_window [instance="vncviewer"] floating enable
 # Everything else
 default_border pixel 1
 default_floating_border none
@@ -209,7 +211,7 @@ bindsym $mod+r mode "resize"
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86MonBrightnessUp exec light -A 5
     bindsym XF86MonBrightnessDown exec light -U 5
-
+    bindsym XF86AudioMedia exec grim -g "$(slurp)" "$HOME/Pictures/Screenshot-$(date +%m%d-%H:%M:%S).png"
 #Hibernate Keybind
     bindsym $mod+Shift+h exec systemctl hibernate
 

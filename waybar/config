@@ -2,23 +2,27 @@
     "layer": "bottom",
     "position": "top",
     "height": 30,
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray","network","temperature","battery","backlight","pulseaudio"],
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": [],
+    "modules-right": ["tray","network","temperature","pulseaudio","backlight","battery","clock"],
 
     "sway/workspaces": {
-        "disable-scroll-wraparound": true,
-        "enable-bar-scroll": false,
-        "smooth-scrolling-threshold": 30 
+        "disable-scroll": false,
+        "all-outputs": false 
     },
     "sway/window": {
         "max-length": 80,
         "tooltip": false
     },
-    
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
     "clock": {
-        "format": "{:%l:%M:%S %p}",
-        "tooltip": false,
+//        "format": "{:%l:%M:%S :%p}",
+        "format": "{:%r}",
+        "tooltip-format": "{:%A, %D}",
         "interval": 1
     },
     "battery": {
@@ -58,11 +62,12 @@
         "on-scroll-up": "light -U 5"
     },
     "tray": {
-        "icon-size": 18
+        "icon-size": 18,
+        "spacing": 10
     },
     "cpu": {
         "tooltip": false,
-        "format": " {}%"
+        "format": "{usage}% "
     },
     "memory": {
         "tooltip": false,
@@ -70,7 +75,6 @@
         // "format": "{used} / {total}  "
     },
     "network": {
-        //"format-wifi": " {essid} ({signalStrength}%)",
         "format-wifi": "{essid} ",
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
         "format-linked": " {ifname} (No IP)",
