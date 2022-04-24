@@ -1,220 +1,47 @@
-#Windows key for keybinds
-set $mod Mod4
+# 2022 Sway Config | Matthew Lyon
 
-#Terminal emulator
-set $term kitty
+# Variables
+    # Sway modifier
+    # Windows key
+    set $mod Mod4
 
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu exec $term --class=launcher -e "sway-launcher-desktop" | xargs swaymsg exec --
+    # Terminal
+    set $term kitty
 
-# Lock command
-set $lock ' ~/.config/sway/lock.sh'
+    # App launcher
+    set $launcher exec $term --class=launcher -e "sway-launcher-desktop" | xargs swaymsg exec --
 
-# Idle configuration
-exec swayidle -w timeout 300 $lock before-sleep $lock 
+    # Lock
+    set $lock "$HOME/.config/sway/lock.sh"
 
-# Scaling
-output * scale 1
-# Wallpaper
-#set $bg /usr/share/backgrounds/archlinux/small.png
-set $bg ~/.config/wallpapers/silence_wench.png
-output * bg $bg fill
+    # Wallpaper
+    set $bg "$HOME/.config/wallpapers/silence_wench.png" 
 
 # Autostart
-exec export XDG_CURRENT_DESKTOP=sway
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-xwayland enable
+    # Idle configuration
+    exec swayidle -w timeout 450 $lock before-sleep $lock
 
-# Input config
-input type:touchpad {
-    tap enabled
-    natural_scroll enabled
-    dwt disabled
-    drag enabled
-}
+    exec export XDG_CURRENT_DESKTOP=sway
+    exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Come Back To This
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
+    # XWayland
+    xwayland enable
 
+# Waybar
+    exec_always $HOME/.config/waybar/waybar.sh
 
-### Window config
-# Filemanagers
-for_window [app_id=nemo] floating enable
-# Terminals
-for_window [app_id=kitty] floating enable, resize set 730 500
-# Dialogs
-for_window [app_id="system-config-printer"] floating enable
-for_window [app_id="apostrophe" title="Export"] floating enable
-for_window [title="Firefox — Sharing Indicator"] floating enable
-for_window [title="Open Files"] floating enable
-for_window [title="Open File"] floating enable
-for_window [title="Open Folder"] floating enable
-for_window [title="Library"] floating enable
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 1
-# A/V
-for_window [class=zoom] floating enable
-for_window [app_id=pavucontrol] floating enable
-for_window [app_id=io.github.celluloid_player.Celluloid] floating enable
-# Games
-for_window [title="Steam"] floating enable
-for_window [app_id="minecraft-launcher"] floating enable
-for_window [title="Linux Minecraft Launcher"] floating enable
-for_window [title="Minecraft"] floating enable
-# Other apps
-for_window [title="Calculator"] floating enable
-for_window [app_id=eog] floating enable
-for_window [app_id=transmission-gtk] floating enable
-for_window [app_id=file-roller] floating enable
-for_window [app_id=gedit] floating enable
-for_window [title="Customise Look and Feel"] floating enable
-for_window [app_id=discord] floating enable
-for_window [instance="vncviewer"] floating enable
-# Everything else
-default_border pixel 1
-default_floating_border none
-### Gaps (I Think?)
-gaps outer 15
+# Include Other Configs
+    # Wallpaper and DPI settings
+    include $HOME/.config/sway/config.d/wallpaper.conf
 
-### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
-    bindsym $mod+Return exec $term
+    # Floating Apps and borders
+    include $HOME/.config/sway/config.d/apps.conf
 
-    # Kill focused window
-    bindsym $mod+q kill
+    # Keybinds needed for functional use
+    include $HOME/.config/sway/config.d/keybinds.conf
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
-    
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+    # input specific fine tuning
+    include $HOME/.config/sway/config.d/input.conf
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
-
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaymsg exit
-#
-# Moving around:
-#
-    # Move your focus around]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
-
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
-
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
-
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
-
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
-
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-#
-# Volume Control & Media
-#
-    bindsym XF86AudioRaiseVolume exec pamixer -i 5
-    bindsym XF86AudioLowerVolume exec pamixer -d 5
-    bindsym XF86AudioMute exec pamixer -t
-    bindsym XF86AudioPlay exec playerctl play-pause
-    bindsym XF86AudioPause exec playerctl play-pause
-    bindsym XF86AudioNext exec playerctl next
-    bindsym XF86AudioPrev exec playerctl previous
-    bindsym XF86MonBrightnessUp exec light -A 5
-    bindsym XF86MonBrightnessDown exec light -U 5
-    bindsym XF86AudioMedia exec grim -g "$(slurp)" "$HOME/Pictures/Screenshot-$(date +%m%d-%H:%M:%S).png"
-#Hibernate Keybind
-    bindsym $mod+Shift+h exec systemctl hibernate
-
-# Status Bar:
-exec_always $HOME/.config/waybar/waybar.sh
-
-include /etc/sway/config.d/*
+    # System wide configuration
+    include /etc/sway/config.d/*
