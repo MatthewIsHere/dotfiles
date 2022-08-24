@@ -1,6 +1,9 @@
 #!/bin/bash
 # Inital Settings for Gigachads
 
+# Copy config files to ./config
+cp -r ./config/ ~/.config/
+
 # Install AUR Helper
 ./install_paru.sh
 
