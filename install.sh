@@ -1,16 +1,18 @@
-#!/bin/bash
-# Inital Settings for Gigachads
+#!/bin/sh
 
 # Copy config files to ./config
 cp -r ./config/ ~/.config/
 
-# Install AUR Helper
+# Install AUR helper
 ./install_paru.sh
 
-# GTK Theme
+# Install required packages
+cat required_packages.txt | paru -S
+
+# GTK theme
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"          
 gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 
-# Nemo Default Terminal
+# Nemo default terminal
 gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 

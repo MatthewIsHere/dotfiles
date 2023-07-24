@@ -1,85 +1,79 @@
 * {
     font-family: "Roboto Mono Medium", Font Awesome, Roboto, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;;
-}
-window#waybar.hidden {
-	opacity: 0.2;
+    background-color: #0f0f0f;
+    color: white;
+    text-shadow: 1px 1px 1px black;
 }
 
-/*-----module groups----*/
-.modules-left {
-    margin-top: 2px;
-    margin-left: 5px;
+#modules-left {
+    margin-left: 16px;
 }
-.modules-center {
-    margin-top: 2px;
+#modules-right {
+    margin-right: 16px
 }
-.modules-right {
-    margin-top: 2px;
-    margin-right: 5px;
-}
-/*-----modules indv----*/
-#workspaces button {
-    padding: 1px 5px;
-    background-color: transparent;
-}
-/* Right Side Modules */
+
 #network,
 #pulseaudio,
 #cpu,
 #clock,
 #memory,
 #tray,
+#idle_inhibitor
 #mode,
 #mpd,
 #backlight,
 #battery,
-#temperature {
+#temperature,
+#window
+#custom-clock {
     padding: 0 10px;
-    margin: 3px 0px;
-    border-radius: 2;
-    background-color: rgba(0, 0, 0, 0.5);
-    min-width: 45px;
 }
 
-#window,
+#custom-separator {
+    color: white;
+    padding: 0 5px;
+}
+
+#workspaces button {
+    color: white;
+    margin: 0;
+    padding: 3px 15px;
+}
+
+#workspaces button.focused {
+    color: steelblue;
+}
+
 #workspaces {
-	margin: 0 4px;
+	padding: 0;
 }
-
-.modules-left > widget:first-child > #workspaces { /* No left margin on left most workspaces module */
+/*
+.modules-left > widget:first-child > #workspaces { No left margin on left most workspaces module
 	margin-left: 0;
 }
 
-.modules-right > widget:last-child > #workspaces { /* No right margin on right most workspaces module */
+.modules-right > widget:last-child > #workspaces { No right margin on right most workspaces module
         margin-right: 0;
 }
+*/
 
-#mode {
+
+#mode,
+#pulseaudio.muted,
+#battery.critical:not(.charging),
+#temperature.critical {
     color: red;
-    font-weight: bold;
 }
-/*-----Indicators----*/
-#pulseaudio.muted {
-    color: red;
-}
+
+
 #battery.charging {
     color: darkgreen;
 }
 #battery.warning:not(.charging) {
 	color: gold;
 }
-#battery.critical:not(.charging) {
-    color: red;
-}
-#temperature.critical {
-    color: red;
-}
-

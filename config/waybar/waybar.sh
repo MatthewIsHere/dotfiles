@@ -1,8 +1,8 @@
-#1/usr/bin/env bash
+#!/bin/sh
 
-# Kill previous bar
+# Kill old bar
 killall -q waybar
-# Wait for bar to be ded
+# Wait for no waybar
 while pgrep -x waybar > /dev/null;do sleep 1; done
-#start it now
+#Start waybar
 waybar

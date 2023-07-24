@@ -1,29 +1,22 @@
 {
-    "layer": "bottom",
     "position": "top",
+    "layer": "bottom",
     "height": 30,
     "spacing": 4,
+    "margin-bottom": 16,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": [],
-    "modules-right": ["tray","network","temperature","pulseaudio","backlight","battery","clock"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "custom/separator", "idle_inhibitor", "custom/separator", "network", "custom/separator", "temperature", "custom/separator", "backlight", "custom/separator", "pulseaudio", "custom/separator", "battery", "custom/separator", "custom/clock"],
 
     "sway/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": false 
+        "disable-scroll": true,
+        "all-outputs": false
     },
     "sway/window": {
-        "max-length": 80,
         "tooltip": false
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-
-    "clock": {
-//        "format": "{:%l:%M:%S :%p}",
-        "format": "{:%r}",
-        "tooltip-format": "{:%A, %D}",
-        "interval": 1
+        "format": "{}"
     },
     "battery": {
         "format": "{capacity}% {icon}",
@@ -58,21 +51,12 @@
     "backlight": {
         "format": "{icon} {percent}%",
         "format-icons": ["", ""],
-        "on-scroll-down": "light -A 5",
-        "on-scroll-up": "light -U 5"
+        "on-scroll-down": "brightnessctl s 5%-",
+        "on-scroll-up": "brightnessctl s +5%"
     },
     "tray": {
         "icon-size": 18,
         "spacing": 10
-    },
-    "cpu": {
-        "tooltip": false,
-        "format": "{usage}% "
-    },
-    "memory": {
-        "tooltip": false,
-        "format": " {}%"
-        // "format": "{used} / {total}  "
     },
     "network": {
         "format-wifi": "{essid} ",
@@ -80,10 +64,28 @@
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "No Network ",
         "format-disabled": "",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": false
     },
     "temperature": {
         "format": "{temperatureF}°F ",
-        "interval": 1
+        "interval": 1,
+        "critical-threshold": 90
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "custom/clock": {
+        "exec": "date +\"%a %l:%M:%S %p\"",
+        "interval": 1,
+        "tooltip": false
+    },
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
     }
 }
