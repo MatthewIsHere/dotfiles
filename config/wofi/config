@@ -1,0 +1,7 @@
+stylesheet=style.css
+show=drun
+insensitive=true
+drun-print_command=true
+prompt=
+allow_images=true
+width=25%
