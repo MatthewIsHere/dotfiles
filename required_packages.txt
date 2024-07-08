@@ -1,7 +1,7 @@
 seatd
 sway
 swayidle
-gtklock
+gtklock-git
 wofi
 azote
 chayang-git

@@ -1,7 +1,13 @@
 #!/bin/sh
 
-for o in DP-1 DP-2
+STATE=$(swaymsg -t get_outputs)
+NUM=$(echo $STATE | jq ". | length")
+
+i=0
+while [ $i -lt $NUM ];
 do
-    magick "/tmp/$o.png" -blur 0x5 "/tmp/$o.png" &
+    NAME=$(echo $STATE | jq ".[$i].name" | tr -d '"')
+    magick "/tmp/$NAME.png" -blur 0x5 "/tmp/$NAME.png" &
+    true $(( i=i+1 ))
 done
 wait
