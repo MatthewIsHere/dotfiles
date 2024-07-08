@@ -30,6 +30,7 @@ ttf-font-awesome
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 xdg-user-dirs
+apple-fonts
 ```
 ### Packages I use
 ```
