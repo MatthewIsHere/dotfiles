@@ -107,7 +107,7 @@
 #Resize mode
     mode "resize" {
         bindsym Up resize shrink height 10px
-        bindsym Down resive grow height 10px
+        bindsym Down resize grow height 10px
         bindsym Left resize shrink width 10px
         bindsym Right resize grow width 10px
 
