@@ -4,7 +4,7 @@
 git submodule update --init --recursive
 
 # Copy config files to ./config
-cp -r ./config/ ~/.config/
+cp -r ./config/* ~/.config/
 
 # Copy .profile
 cat profile >> ~/.profile
@@ -20,10 +20,10 @@ gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 ./install_paru.sh
 
 # Install required packages
-./install_required
+./install_required.sh
 
 # Install extra
-./install_extra
+./install_extras.sh
 
 rustup default nightly
 
