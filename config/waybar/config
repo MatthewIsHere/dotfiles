@@ -3,7 +3,7 @@
     "layer": "bottom",
     "height": 16,
     "spacing": 4,
-    "margin-bottom": 8,
+    "margin-bottom": 0,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["tray", "custom/separator", "idle_inhibitor", "custom/separator", "network", "custom/separator", "temperature", "custom/separator", "backlight", "custom/separator", "pulseaudio", "custom/separator", "battery", "custom/separator", "custom/clock"],

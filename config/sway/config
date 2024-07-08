@@ -151,8 +151,6 @@
     output DP-1 pos 0 150 res 1920x1080
     output DP-2 transform 90 
     output DP-2 pos 1920 0
-#Scaling
-#    output * scale 1
 
 # App Specific Settings
 
@@ -198,11 +196,15 @@
     default_border pixel 2
     default_floating_border none
 #Gaps
-    gaps outer 16
-#    gaps top -16
+    gaps outer 8
+    gaps inner 16
     smart_gaps off
     smart_borders on
 
 # System Includes
 
 include /etc/sway/config.d/*
+
+# Device Specific
+
+include $HOME/.config/sway/config.d/*
