@@ -1,6 +1,7 @@
 htop
 git
-vim
+neovim
+neovim-symlinks
 openssh
 gnupg
 nemo
@@ -17,3 +18,16 @@ mint-backgrounds
 yt-dlp
 zsh
 oh-my-zsh-git
+pam-u2f
+wireguard-tools
+wget
+wayvnc
+tree
+waypipe
+vlc
+tree-sitter-python
+tree-sitter-c
+sbctl
+rsync
+rustup
+neofetch

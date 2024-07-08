@@ -13,7 +13,7 @@ waybar
 kitty
 pamixer
 playerctl
-brightnessctl
+light
 grim
 slurp
 pavucontrol
@@ -22,6 +22,10 @@ arc-gtk-theme
 papirus-icon-theme
 gtklock-git
 ttf-font-awesome
+apple-fonts
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 xdg-user-dirs
+wl-clipboard
+jq
+imagemagick

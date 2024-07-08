@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Clone submodules
+git submodule update --init --recursive
+
 # Copy config files to ./config
 cp -r ./config/ ~/.config/
 
@@ -17,5 +20,10 @@ gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
 ./install_paru.sh
 
 # Install required packages
-cat required_packages.txt | paru -S
+./install_required
+
+# Install extra
+./install_extra
+
+rustup default nightly
 

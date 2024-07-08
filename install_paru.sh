@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/bin/sh
+
+pacman -Q | grep paru > /dev/null
+if [ $? -eq 0 ]; then
+    echo Found Paru. No need to build.
+    exit 0
+fi
+
 PWD="$(pwd)"
 BUILDDIR="$(mktemp -d)"
 PKG=paru
