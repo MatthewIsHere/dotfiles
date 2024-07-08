@@ -1,7 +1,40 @@
-window {
-   background-image: url("/usr/share/backgrounds/linuxmint-vanessa/aaronphs_indonesia.jpg");
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
-   background-color: black;
+window#DP-1 {
+   background-image: url("/tmp/DP-1.png");
+}
+
+window#DP-2 {
+   background-image: url("/tmp/DP-2.png");
+}
+
+#window-box {
+   background-color: transparent;
+   color: rgba(255, 255, 255, 0.95);
+   font-family: "SF Pro";
+}
+
+#clock-label {
+   font-family: "SF Compact Display";
+   letter-spacing: 3px;
+   font-size: 128px;
+   font-weight: bolder;
+   text-shadow: 3px 4px 14px rgba(0, 0, 0, 1);
+   margin-top: -25px;
+}
+
+#date-label {
+   font-size: 40px;
+   text-shadow: 3px 4px 14px rgba(0, 0, 0, 1);
+}
+
+
+#input-label,
+#input-field {
+   margin-top: 700px;
+}
+
+#unlock-button {
+   margin: 5px;
+   background-color: transparent;
+   color: transparent;
+   border: none;
 }

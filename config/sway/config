@@ -1,4 +1,4 @@
-# 2023 Sway Config
+# 2024 Sway Config
 
 # Variables
 
@@ -12,23 +12,26 @@
 #Scripts
     set $screenshot exec grim -g "$(slurp -b 00000090 -c ffffff90 -w 1)" "$HOME/Pictures/Screenshot-$(date +%m%d-%H:%M:%S).png"
     set $lock "$HOME/.config/sway/lock.sh"
-    set $off "$HOME/.config/sway/off.sh"
-    set $on "$HOME/.config/sway/on.sh"
+    set $sleep "$HOME/.config/sway/sleep.sh"
+    set $on "$HOME/.config/sway/power.sh"
 
 # Autostart
-    
+
+# AutoTiling
+    exec autotiling
 #Wallpaper
     exec ~/.azotebg
 #Waybar
     exec_always "$HOME/.config/waybar/waybar.sh"
 #Idle and locking
-    exec swayidle -w timeout 300 "chayang && $off && $lock" resume "$on" before-sleep "$off && $lock"  after-resume "$on"
+    exec swayidle -w timeout 300 "$sleep" resume "$on" before-sleep "$lock"
 #XWayland
     xwayland enable
 #SSH and auth mgmt
     exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #User dirs
     exec xdg-user-dirs-update
+
 
 # Keybinds
 
@@ -92,6 +95,7 @@
     bindsym $mod+space focus mode_toggle
     #Move focus to parent container 
     bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
 #Scratchpad
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -130,6 +134,7 @@
     bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
     bindsym XF86AudioMedia $screenshot
     bindsym $mod+l exec $lock
+    bindsym $mod+Shift+l exec sleep 0.5 && killall -SIGUSR1 swayidle
     bindsym $mod+Shift+h exec systemctl hibernate
 
 # Input and Displays
@@ -143,18 +148,19 @@
     }
     # You can get the names of your inputs by running: swaymsg -t get_inputs
     # Read `man 5 sway-input` for more information about this section.
-    output eDP-1 pos 0 0
-    output DP-1 pos 1920 0 res 1920x1080
+    output DP-1 pos 0 150 res 1920x1080
+    output DP-2 transform 90 
+    output DP-2 pos 1920 0
 #Scaling
-    output * scale 1
+#    output * scale 1
 
 # App Specific Settings
 
 #Floating apps
     # Filemanagers
-    for_window [app_id=nemo] floating enable
+    #for_window [app_id=nemo] floating enable
     # Terminals
-    for_window [app_id=kitty] floating enable, resize set 730 500
+    #for_window [app_id=kitty] floating enable, resize set 730 500
     # Dialogs
     for_window [app_id="system-config-printer"] floating enable
     for_window [app_id="apostrophe" title="Export"] floating enable
@@ -163,8 +169,10 @@
     for_window [title="Open File"] floating enable
     for_window [title="Open Folder"] floating enable
     for_window [title="Library"] floating enable
-    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 1
+    for_window [app_id="^launcher$"] floating enable, sticky enable, border pixel 1
     for_window [title="Customise Look and Feel"] floating enable
+    # For floating spotify miniplayer
+    for_window [class="Chromium-browser"] floating enable
     # A/V
     for_window [class=QjackCtl] floating enable
     for_window [class=zoom] floating enable
@@ -179,6 +187,7 @@
     for_window [title="Minecraft"] floating enable
     for_window [class="mupen64plus"] floating enable
     for_window [title="UNDERTALE"] floating enable
+    for_window [title="Lethal Company"] floating enable
     # Utilities
     for_window [title="Calculator"] floating enable
     for_window [app_id=eog] floating enable
@@ -190,7 +199,7 @@
     default_floating_border none
 #Gaps
     gaps outer 16
-    gaps top -16
+#    gaps top -16
     smart_gaps off
     smart_borders on
 
