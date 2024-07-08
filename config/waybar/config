@@ -1,9 +1,9 @@
 {
     "position": "top",
     "layer": "bottom",
-    "height": 30,
+    "height": 16,
     "spacing": 4,
-    "margin-bottom": 16,
+    "margin-bottom": 8,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["tray", "custom/separator", "idle_inhibitor", "custom/separator", "network", "custom/separator", "temperature", "custom/separator", "backlight", "custom/separator", "pulseaudio", "custom/separator", "battery", "custom/separator", "custom/clock"],
@@ -46,7 +46,8 @@
         },
         "scroll-step": 0,
         "on-click": "pavucontrol",
-        "tooltip": false
+        "tooltip": false,
+        "ignored-sinks": [ "Local Mix", "System", "Music", "Game", "Voice Chat" ]
     },
     "backlight": {
         "format": "{icon} {percent}%",
